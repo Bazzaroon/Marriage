@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Marriage</title>
+	
+    <link rel="stylesheet" type="text/css" href="css/marriage.css"/>
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.10.4.custom.css"/>
+    <link rel="stylesheet" type="text/css" href="css/menu.css"/>
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.css"/>
+    
+	<script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.10.4.custom.js"></script>
+	<script type="text/javascript" src="js/pager.js"></script>
+    <script type="text/javascript" src="js/ajax.js"></script>
+    <script type="text/javascript" src="menu.js"></script>
+    
+</head>
+
+<body>
+	<input type="button" value="View" onclick="AdjustToViewPort()" />
+    <div class="container" align="center">
+    	<div id="cover">
+        	<figure class="front">
+            	<img class="frontImage" src="Images/cover.png" />
+            </figure>
+        	<figure class="back" style="right:0">
+            	<img class="backImage" src="Images/frontinnercover.png"/>
+            </figure>
+        </div>
+        <div id="backcover">
+        	<figure class="inside">
+            	<img class="insideBackImage" src="Images/backinnercover.png"/>
+            </figure>
+            <figure class="outside"></figure>
+        </div>
+    </div>
+    <div id="login"></div>
+</body>
+</html>
+
+<script>
+	
+	$(document).ready(function(){
+		
+		$('#cover').click(function(){
+				$(this).css('box-shadow', 'none');
+				$(this).addClass('opened');
+				setTimeout(displayBackCover, 10);
+			});		
+	
+		function displayBackCover(){
+			$('#backcover').addClass('opened').pages();
+			AdjustToViewPort();
+		
+		$('#cover').animate({left: '+=' + (globals.containerWidth / 2) + 'px'}, 1000); 
+		$('#backcover').animate({left: '+=' + (globals.containerWidth / 2) + 'px'}, 1000);
+		
+	}
+		
+		
+		AdjustToViewPort();
+	
+	})
+	
+	function Flip(direction){
+		
+	}
+	
+	function AddLeaf(){
+	  var el = $('#backcover');
+	  el.pages('add');
+	  el.pages('addPictureToPage', TestPic(), 1);
+	  el.pages('addPictureToPage', TestPic2(), 1);
+	  el.pages('renderPage', 1);
+	  el.pages('add');
+	  el.pages('addPictureToPage', TestPic(), 2);
+	  el.pages('addPictureToPage', TestPic2(), 2);
+	  el.pages('renderPage', 2);
+	  
+	}
+	
+	function TurnPage(){
+		$('#cover').css('z-index',0);
+		$('#pg1').removeClass('flipback').addClass('flip');
+	}
+	
+	function TurnBack(){
+		$('#pg1').removeClass('flip').addClass('flipback');
+		
+	}
+
+	function AdjustToViewPort(){
+		var X = $(window).width();
+		var Y = $(window).height();
+		var containerHeight = parseInt((((Y * globals.albumScale) / 100)));
+		globals.containerWidth = parseInt(((containerHeight * 80) / 100));
+		$('.container').css({height: containerHeight + 'px', width: globals.containerWidth + 'px'});
+		
+	}
+	
+</script>

@@ -1,0 +1,27 @@
+@charset "utf-8";
+/* CSS Document */
+
+#navigate ul{
+list-style:none;
+	position:relative;
+	float:left;
+	margin:0;
+	padding:0
+}
+
+#navigate ul a{
+	display:block;
+	color:#333;
+	text-decoration:none;
+	font-size:12pt;
+	font-family:Verdana, Geneva, sans-serif;
+	line-height:32px;
+	padding:0 15px;
+}
+
+
+#navigate ul li.current-menu-item
+{
+	background:#ddd
+}
+
